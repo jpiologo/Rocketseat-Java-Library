@@ -33,4 +33,24 @@ public class Book {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }

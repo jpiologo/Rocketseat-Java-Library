@@ -35,7 +35,7 @@ public class Author {
                 "ID: %d%nAuthor: %s%nLiterary Genres: %s%nStill writes? %s%n",
                 id,
                 name,
-                literaryGenres.stream().map(Genre::getName).toList(),
+                literaryGenres,
                 stillWrites
         );
     }
