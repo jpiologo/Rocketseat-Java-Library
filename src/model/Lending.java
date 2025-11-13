@@ -14,4 +14,19 @@ public class Lending {
         this.lenderSurname = lenderSurname;
         this.lendingDate = lendingDate;
     }
+
+    public String getInfo(){
+        return String.format(
+                "Book: %s%nLender name: %s %s%nLending date: %tF",
+                book.getTitle(),
+                lenderFirstName,
+                lenderSurname,
+                lendingDate
+        );
+    }
+
+    @Override
+    public String toString() {
+        return getInfo();
+    }
 }

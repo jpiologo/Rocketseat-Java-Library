@@ -16,13 +16,11 @@ public class LibrarySoftware {
         Book theHobbit = new Book("The Hobbit", List.of(Genre.Adventure, Genre.Fantasy), tolkien);
         Book theReplubic = new Book("The Republic", List.of(Genre.Educational), plato);
 
-        Lending lending1 = new Lending(theHobbit, "Joao", "Piologo", currentDate);
-
         Library library = new Library();
         library.setBooks(List.of(theReplubic, theHobbit));
 
         while(!exit){
-            System.out.println("====WELCOME TO JOHNY'S LIBRARY====\n");
+            System.out.println("\n====WELCOME TO JOHNY'S LIBRARY====\n");
             System.out.println("Plase, choose an option:");
             System.out.println("1- Lend a book");
             System.out.println("2- Exit");
@@ -31,6 +29,27 @@ public class LibrarySoftware {
             switch (option){
                 case 1:
                     System.out.println("====LEND A BOOK!====");
+                    List<Book> availableBooks = library.getAvailableBooks();
+                    if(availableBooks.isEmpty()){
+                        System.out.println("No books available at the moment.");
+                    } else {
+                        System.out.println("Available books:\n");
+                        availableBooks.forEach(book -> {
+                            System.out.println(book);
+                            System.out.println("----------------------\n");
+                        });
+                        System.out.println("Select the book by ID: ");
+                        int bookId = scanner.nextInt();
+                        scanner.nextLine();
+                        Book selectedBook = library.getBooks().stream().filter(book -> book.getId() == bookId).findFirst().orElse(null);
+                        System.out.println("Type your first name: ");
+                        String firstName = scanner.nextLine();
+                        System.out.println("Type your last name: ");
+                        String lastName = scanner.nextLine();
+                        System.out.println(library.updateBookStatusById(bookId, Status.Unavailable));
+                        Lending lending = new Lending(selectedBook, firstName, lastName, currentDate);
+                        System.out.println(lending.getInfo());
+                    }
                     break;
                 case 2:
                     exit = true;

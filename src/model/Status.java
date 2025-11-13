@@ -1,8 +1,8 @@
 package model;
 
 public enum Status {
-    Avaible("Avaible"),
-    Unavaible("Unavaible")
+    Available("Available"),
+    Unavailable("Unavailable")
     ;
 
     private final String description;

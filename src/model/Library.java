@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Library {
@@ -23,11 +24,31 @@ public class Library {
         this.books = books;
     }
 
-    public void setLendings(List<Lending> lendings) {
-        this.lendings = lendings;
+    public void setLendings(Lending lending) {
+        lendings.add(lending);
     }
 
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
+    }
+
+    public List<Book> getAvailableBooks(){
+        return books.stream().filter(book -> book.status == Status.Available).sorted(Comparator.comparing(Book::getId)).toList();
+    }
+
+    public String updateBookStatusById(int id, Status newStatus) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+
+                if (book.getStatus() == Status.Unavailable) {
+                    return "Book is already lent!";
+                }
+
+                book.setStatus(newStatus);
+                return "Transaction successful!";
+            }
+        }
+
+        return "Book with ID " + id + " not found.";
     }
 }

@@ -10,7 +10,7 @@ public class Book {
     String title;
     List<Genre> genres = new ArrayList<>();
     Author author;
-    Status status = Status.Avaible;
+    Status status = Status.Available;
 
     public Book (String title, List<Genre> genres, Author author){
         this.id = ++counter;
@@ -52,5 +52,10 @@ public class Book {
 
     public Status getStatus() {
         return status;
+    }
+
+    @Override
+    public String toString() {
+        return getInfo();
     }
 }
